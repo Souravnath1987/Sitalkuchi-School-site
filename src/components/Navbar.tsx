@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Phone, Mail, BookOpen, Menu, X } from 'lucide-react';
+import { MapPin, Phone, Mail, BookOpen } from 'lucide-react';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +24,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="fixed w-full top-0 z-50 flex flex-col">
+    <header className="sticky w-full top-0 z-50 flex flex-col bg-white">
       {/* Top Bar */}
       <div className="bg-brand-green-900 text-brand-ivory text-xs sm:text-sm py-2 px-4 sm:px-8 flex flex-col sm:flex-row justify-between items-center transition-all duration-300">
         <div className="flex items-center space-x-2 mb-2 sm:mb-0">
@@ -46,51 +45,55 @@ export function Navbar() {
 
       {/* Main Navbar */}
       <nav className={`transition-all duration-300 ${isScrolled ? 'bg-brand-ivory/95 backdrop-blur-sm shadow-sm py-3' : 'bg-brand-ivory py-4 sm:py-5'} px-4 sm:px-8`}>
-        <div className="max-w-[1440px] mx-auto flex justify-between items-center">
+        <div className="max-w-[1440px] mx-auto flex flex-col xl:flex-row justify-between items-center gap-4 xl:gap-8">
           
           {/* Logo/Brand */}
-          <a href="#home" className="flex items-center space-x-3 sm:space-x-4 group">
+          <a href="#home" className="flex items-center space-x-3 sm:space-x-4 group w-full xl:w-auto justify-center xl:justify-start">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-green-800 flex items-center justify-center text-brand-gold flex-shrink-0 group-hover:scale-105 transition-transform">
               <BookOpen size={24} />
             </div>
-            <div className="flex flex-col">
-              <span className="font-serif font-bold italic text-2xl sm:text-3xl text-brand-green-900 leading-tight">
+            <div className="flex flex-col text-center xl:text-left">
+              <span className="font-serif font-bold italic text-xl sm:text-2xl xl:text-3xl text-brand-green-900 leading-tight">
                 SITALKUCHI HIGH SCHOOL
               </span>
-              <span className="text-[10px] sm:text-xs text-brand-text-muted mt-1 font-medium uppercase tracking-wider">
+              <span className="text-[9px] sm:text-[10px] xl:text-xs text-brand-text-muted mt-1 font-medium uppercase tracking-wider">
                 (H.S recognized Govt. sponsored with Co-education)
               </span>
-              <span className="text-[10px] sm:text-xs text-brand-gold font-medium tracking-wider uppercase mt-0.5">
+              <span className="text-[9px] sm:text-[10px] xl:text-xs text-brand-gold font-medium tracking-wider uppercase mt-0.5">
                 Index No. 04 - 042 / H.S Code - 110169
               </span>
             </div>
           </a>
 
-          {/* Menu Toggle */}
-          <button 
-            className="text-brand-green-900 p-2 hover:bg-brand-gold/20 rounded-lg transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-
-        {/* Dropdown Nav */}
-        {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-brand-cream/95 backdrop-blur-md shadow-2xl border-t border-brand-cream py-6 px-4 flex flex-col space-y-3 lg:space-y-4 lg:py-8">
+          {/* Nav Links */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 w-full xl:w-auto">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block w-full text-center bg-white shadow-sm border border-brand-gold/20 hover:bg-brand-gold hover:border-brand-gold text-brand-green-900 font-bold text-lg lg:text-xl py-3.5 lg:py-4 px-4 rounded-xl uppercase tracking-[0.15em] transition-all duration-300 active:scale-90 hover:-translate-y-1 hover:shadow-md max-w-2xl mx-auto"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const targetId = link.href.substring(1);
+                  const targetElement = document.getElementById(targetId);
+                  if (targetElement) {
+                    const headerOffset = 180; // approximate height of sticky header
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth"
+                    });
+                  }
+                }}
+                className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[10px] sm:text-xs xl:text-sm font-bold text-brand-green-900 bg-brand-cream border-2 border-brand-gold/30 shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:bg-brand-green-900 hover:text-brand-gold hover:border-brand-green-900 transition-all duration-300 uppercase tracking-widest"
               >
                 {link.name}
               </a>
             ))}
           </div>
-        )}
+
+        </div>
       </nav>
     </header>
   );
