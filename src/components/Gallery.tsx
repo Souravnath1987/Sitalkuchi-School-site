@@ -4,6 +4,9 @@ import { Section } from './Section';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const galleryImages = [
+  { src: "/images/1002.png", alt: "৮০ তম স্বাধীনতা দিবস উদযাপন", caption: "৮০ তম স্বাধীনতা দিবস উদযাপন" },
+  { src: "/images/1001.png", alt: "৮০ তম স্বাধীনতা দিবস উপলক্ষে সাংস্কৃতিক অনুষ্ঠান", caption: "৮০ তম স্বাধীনতা দিবস উপলক্ষে সাংস্কৃতিক অনুষ্ঠান" },
+  { src: "/images/1000.jpeg", alt: "৮০ তম স্বাধীনতা দিবস উপলক্ষে শিক্ষক ও দ্বাদশ শ্রেণীর ছাত্রছাত্রীদের মধ্যে ফুটবল ম্যাচ", caption: "৮০ তম স্বাধীনতা দিবস উপলক্ষে শিক্ষক ও দ্বাদশ শ্রেণীর ছাত্রছাত্রীদের মধ্যে ফুটবল ম্যাচ" },
   { src: "/images/200.jpg", alt: "Campus Life 10", caption: "ডঃ শ্যামাপ্রসাদ মুখার্জির জন্মজয়ন্তী উপলক্ষে সাংস্কৃতিক অনুষ্ঠান" },
   { src: "/images/202.jpg", alt: "Campus Life 11", caption: "আন্তর্জাতিক যোগা দিবস" },
   { src: "/images/001.jpg", alt: "Campus Life 12", caption: "অরণ্য সপ্তাহ উদযাপন" },

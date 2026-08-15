@@ -3,28 +3,28 @@ import { Section } from './Section';
 
 const faculty = [
   { name: "Pabitra Barman", subject: "Head Teacher", qual: "Teacher-in-Charge", gradient: "from-emerald-700 to-emerald-900", image: "/images/21.jpg" },
-  { name: "Kalyan Barman", subject: "English", qual: "M.A. in English", gradient: "from-blue-700 to-blue-900", image: "/images/741402802_4098507980441293_7697794370512552084_n.jpg" },
-  { name: "Tapas Barman", subject: "Sanskrit", qual: "M.A. in Sanskrit", gradient: "from-amber-600 to-amber-800", image: "/images/13.jpg" },
-  { name: "Prativa Barman", subject: "Bengali", qual: "M.A. in Bengali", gradient: "from-rose-700 to-rose-900", image: "/images/10.jpg" },
-  { name: "Bipul Adhikary", subject: "Bengali", qual: "M.A. in Bengali", gradient: "from-indigo-700 to-indigo-900", image: "/images/12.png" },
-  { name: "Malay Bhowmik", subject: "Bengali", qual: "M.A. in Bengali", gradient: "from-teal-700 to-teal-900", image: "/images/23.jpg" },
-  { name: "Abdul Kalam Hossain", subject: "Geography", qual: "M.A. in Geography", gradient: "from-orange-600 to-orange-800", image: "/images/5.jpg" },
-  { name: "Irani Barman", subject: "Work Education", qual: "M.A.", gradient: "from-purple-700 to-purple-900", image: "/images/2.jpg" },
-  { name: "Rakesh Barman", subject: "Pure Science", qual: "B.Sc in Pure Science", gradient: "from-cyan-700 to-cyan-900", image: "/images/211.jpg?v=2" },
-  { name: "Lalit Barman", subject: "History", qual: "B.A in History", gradient: "from-fuchsia-700 to-fuchsia-900", image: "/images/213.jpg" },
-  { name: "Sourav Debnath", subject: "English", qual: "B.A in English", gradient: "from-violet-700 to-violet-900", image: "/images/217.jpg?v=2" },
-  { name: "Khalil Hossain", subject: "English", qual: "B.A in English", gradient: "from-sky-700 to-sky-900", image: "/images/370.jpg" },
-  { name: "Pratap Singha", subject: "History", qual: "B.A in History", gradient: "from-yellow-700 to-yellow-900", image: "/images/372.jpg" },
-  { name: "Manoranjan Maity", subject: "English", qual: "M.A in English", gradient: "from-lime-700 to-lime-900", image: "/images/373.jpg" },
-  { name: "Goutam Budhya Roy", subject: "Physical Education", qual: "M.A in Bengali & M.P.Ed in Physical Education", gradient: "from-blue-600 to-blue-800", image: "/images/0003.jpeg" },
+  { name: "Kalyan Barman", subject: "English", qual: "M.A B.Ed", gradient: "from-blue-700 to-blue-900", image: "/images/741402802_4098507980441293_7697794370512552084_n.jpg" },
+  { name: "Tapas Barman", subject: "Sanskrit", qual: "M.A B.Ed", gradient: "from-amber-600 to-amber-800", image: "/images/13.jpg" },
+  { name: "Prativa Barman", subject: "Bengali", qual: "M.A B.Ed", gradient: "from-rose-700 to-rose-900", image: "/images/10.jpg" },
+  { name: "Bipul Adhikary", subject: "Bengali", qual: "M.A B.Ed", gradient: "from-indigo-700 to-indigo-900", image: "/images/12.png" },
+  { name: "Malay Bhowmik", subject: "Bengali", qual: "M.A B.Ed", gradient: "from-teal-700 to-teal-900", image: "/images/23.jpg" },
+  { name: "Abdul Kalam Hossain", subject: "Geography", qual: "M.A B.Ed", gradient: "from-orange-600 to-orange-800", image: "/images/5.jpg" },
+  { name: "Irani Barman", subject: "Work Education", qual: "M.A B.Ed", gradient: "from-purple-700 to-purple-900", image: "/images/2.jpg" },
+  { name: "Rakesh Barman", subject: "Pure Science", qual: "B.Sc B.Ed", gradient: "from-cyan-700 to-cyan-900", image: "/images/211.jpg?v=2" },
+  { name: "Lalit Barman", subject: "History", qual: "B.A B.Ed", gradient: "from-fuchsia-700 to-fuchsia-900", image: "/images/213.jpg" },
+  { name: "Sourav Debnath", subject: "English", qual: "B.A B.Ed", gradient: "from-violet-700 to-violet-900", image: "/images/217.jpg?v=2" },
+  { name: "Khalil Hossain", subject: "English", qual: "B.A B.Ed", gradient: "from-sky-700 to-sky-900", image: "/images/370.jpg" },
+  { name: "Pratap Singha", subject: "History", qual: "B.A B.Ed", gradient: "from-yellow-700 to-yellow-900", image: "/images/372.jpg" },
+  { name: "Manoranjan Maity", subject: "English", qual: "M.A B.Ed", gradient: "from-lime-700 to-lime-900", image: "/images/373.jpg" },
+  { name: "Goutam Budhya Roy", subject: "Physical Education", qual: "M.A in Bengali & M.P.Ed", gradient: "from-blue-600 to-blue-800", image: "/images/0003.jpeg" },
 ];
 
 const paraTeachers = [
-  { name: "Krishna Gopal Saha", subject: "Bengali", qual: "B.A in Bengali", gradient: "from-indigo-600 to-indigo-800", image: "/images/250.jpeg" },
+  { name: "Krishna Gopal Saha", subject: "Bengali", qual: "M.A B.Ed", gradient: "from-indigo-600 to-indigo-800", image: "/images/250.jpeg" },
 ];
 
 const vocationalTrainers = [
-  { name: "Saikat Das", subject: "Vocational Trainer", qual: "M.Tech in Electronics & Communication Engg.", gradient: "from-emerald-600 to-emerald-800", image: "/images/371.jpg" },
+  { name: "Saikat Das", subject: "Electronics & Communication Engg.", qual: "M.Tech", gradient: "from-emerald-600 to-emerald-800", image: "/images/371.jpg" },
 ];
 
 const nonTeachingStaff = [
