@@ -1,9 +1,41 @@
 import React, { useState } from 'react';
 import { Section } from './Section';
-import { Pin, X } from 'lucide-react';
+import { Pin, X, Calendar, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-const notices = [
+type NoticeType = {
+  date: string;
+  title: string;
+  desc: string;
+  type: string;
+};
+
+const holidayNotices: NoticeType[] = [
+  {
+    date: "17 Aug 2026",
+    title: "মনসা পূজার ছুটি",
+    desc: `সকল ছাত্র-ছাত্রীদের জানানো যাচ্ছে যে মনসা পূজা উপলক্ষে আগামীকাল ১৮ ই আগস্ট ২০২৬ মঙ্গলবার স্কুল বন্ধ থাকবে।`,
+    type: "Holiday"
+  }
+];
+
+const otherNotices: NoticeType[] = [
+  {
+    date: "17 Aug 2026",
+    title: "প্রবন্ধ প্রতিযোগিতা - কোচবিহার জেলায় সেরা কে?",
+    desc: `এতদ্বারা বিদ্যালয়ের সমস্ত ছাত্র-ছাত্রীদের জানানো যাচ্ছে যে, আগামী ‘শিক্ষক দিবস ২০২৬’ উদযাপন উপলক্ষে পশ্চিমবঙ্গ সরকার এবং জেলা বিদ্যালয় পরিদর্শকের নির্দেশানুসারে বিদ্যালয়ে একটি রচনা প্রতিযোগিতার আয়োজন করা হয়েছে। আগ্রহী ছাত্র-ছাত্রীদের নির্ধারিত বিষয়ে রচনা লিখে নির্দিষ্ট সময়ের মধ্যে জমা দেওয়ার জন্য বলা হচ্ছে।
+
+ ১) রচনার বিষয়:- "কেমন হবে আমার স্কুল"
+ ২) শব্দসীমা:- ৫০০ শব্দ
+ ৩) জমা দেওয়ার শেষ তারিখ:- ২০শে আগস্ট, ২০২৬
+ ৪) যার কাছে জমা দেবে:- (শিক্ষক) সৌরভ দেবনাথ
+
+ বিশেষ দ্রষ্টব্য:
+১. খাতার ওপর স্কুলের নাম, নিজের নাম, শ্রেণী, রোল নম্বর ও ফোন নম্বর স্পষ্টভাবে লিখতে হবে।
+২. A4 সাইজের পেপারে লিখতে হবে। লিখে স্টেপল করে দেবে। A4 কাগজ ছাড়া অন্য কোনো কাগজে লেখা নেওয়া হবে না।
+৩. বিদ্যালয় স্তরে নির্বাচিত সেরা ২টি রচনা জেলা স্তরের প্রতিযোগিতার জন্য পাঠানো হবে এবং বিজয়ী শিক্ষার্থীদের ৫ই সেপ্টেম্বর পুরস্কৃত করা হবে।`,
+    type: "New"
+  },
   {
     date: "14 Aug 2026",
     title: "আগামী ১৫ই আগস্ট স্বাধীনতা দিবস উদযাপন এবং প্রীতি ফুটবল ম্যাচ অনুষ্ঠান প্রসঙ্গে",
@@ -76,11 +108,12 @@ _* GROUP - B (অষ্টম শ্রেণী থেকে দশম শ্�
 ];
 
 export function Noticeboard() {
-  const [selectedNotice, setSelectedNotice] = useState<typeof notices[0] | null>(null);
+  const [selectedNotice, setSelectedNotice] = useState<NoticeType | null>(null);
 
   const getBadgeColor = (type: string) => {
     switch(type) {
       case 'New': return 'bg-brand-gold text-brand-green-900';
+      case 'Holiday': return 'bg-rose-100 text-rose-800';
       case 'Exam': return 'bg-rose-100 text-rose-800';
       case 'Admission': return 'bg-amber-100 text-amber-800';
       default: return 'bg-brand-cream/20 text-brand-cream';
@@ -94,6 +127,38 @@ export function Noticeboard() {
     }
     return desc;
   };
+
+  const renderNoticeCard = (notice: NoticeType, idx: number) => (
+    <div
+      key={idx}
+      className="bg-brand-ivory rounded-xl p-5 shadow-md flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer hover:-translate-y-1 h-full"
+      onClick={() => setSelectedNotice(notice)}
+    >
+      <div>
+        <div className="flex items-center gap-3 mb-2">
+          <span className="text-xs font-mono text-brand-text-muted">{notice.date}</span>
+          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm ${getBadgeColor(notice.type)}`}>
+            {notice.type}
+          </span>
+        </div>
+        <h3 className="font-bold text-lg text-brand-green-900 mb-1 line-clamp-2">
+          {notice.title}
+        </h3>
+        <p className="text-sm text-brand-text-muted whitespace-pre-wrap line-clamp-3">
+          {getShortDesc(notice.desc)}
+        </p>
+      </div>
+      <button 
+        className="text-sm font-medium text-brand-gold hover:text-brand-green-800 transition-colors self-start shrink-0 mt-4 flex items-center"
+        onClick={(e) => {
+          e.stopPropagation();
+          setSelectedNotice(notice);
+        }}
+      >
+        Read More <span className="ml-1">&rarr;</span>
+      </button>
+    </div>
+  );
 
   return (
     <Section id="noticeboard" className="bg-transparent px-4 sm:px-8">
@@ -109,38 +174,26 @@ export function Noticeboard() {
               <h2 className="text-2xl sm:text-3xl font-serif text-brand-ivory">Official Noticeboard</h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-              {notices.map((notice, idx) => (
-                <div
-                  key={idx}
-                  className="bg-brand-ivory rounded-xl p-5 shadow-md flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer hover:-translate-y-1 h-full"
-                  onClick={() => setSelectedNotice(notice)}
-                >
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs font-mono text-brand-text-muted">{notice.date}</span>
-                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm ${getBadgeColor(notice.type)}`}>
-                        {notice.type}
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-lg text-brand-green-900 mb-1 line-clamp-2">
-                      {notice.title}
-                    </h3>
-                    <p className="text-sm text-brand-text-muted whitespace-pre-wrap line-clamp-3">
-                      {getShortDesc(notice.desc)}
-                    </p>
-                  </div>
-                  <button 
-                    className="text-sm font-medium text-brand-gold hover:text-brand-green-800 transition-colors self-start shrink-0 mt-4 flex items-center"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedNotice(notice);
-                    }}
-                  >
-                    Read More <span className="ml-1">&rarr;</span>
-                  </button>
-                </div>
-              ))}
+            {/* Holidays Section */}
+            <div className="mb-12">
+              <div className="flex items-center gap-2 mb-6 border-b border-brand-gold/30 pb-2">
+                <Calendar size={20} className="text-brand-gold" />
+                <h3 className="text-xl font-bold text-brand-ivory">স্কুলের ছুটি সংক্রান্ত</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                {holidayNotices.map((notice, idx) => renderNoticeCard(notice, idx))}
+              </div>
+            </div>
+
+            {/* Other Notices Section */}
+            <div>
+              <div className="flex items-center gap-2 mb-6 border-b border-brand-gold/30 pb-2">
+                <FileText size={20} className="text-brand-gold" />
+                <h3 className="text-xl font-bold text-brand-ivory">অন্যান্য</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                {otherNotices.map((notice, idx) => renderNoticeCard(notice, idx))}
+              </div>
             </div>
             
           </div>
